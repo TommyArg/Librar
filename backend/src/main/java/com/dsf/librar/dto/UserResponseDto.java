@@ -12,6 +12,6 @@ public class UserResponseDto {
     private String username;
     private String completeName;
     private Long role;
-    private Long sucursalId;
+    private Long sucursal;
     private Boolean active;
 }
