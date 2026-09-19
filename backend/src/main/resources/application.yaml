@@ -13,3 +13,8 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
+
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY:SuperSecret}
+      expiration-time: ${JWT_EXPIRATION:86400000}
