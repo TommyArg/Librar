@@ -20,10 +20,11 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsService;
+    private final JwtAuthenticationFilter jwtAuthFilter;
 
-
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService) {
+    public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtAuthenticationFilter jwtAuthFilter) {
         this.userDetailsService = userDetailsService;
+        this.jwtAuthFilter = jwtAuthFilter;
     }
 
     @Bean
@@ -33,7 +34,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 // path ruling
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll() // login/registro endpoint is public
+                        .requestMatchers("/auth/**", "/api/users/**").permitAll() // login/registro endpoint is public
                         .requestMatchers("/admin/**").hasRole("ADMIN") // requires admin role
                         .anyRequest().authenticated() // any other route requires being logged in
                 )
@@ -42,7 +43,10 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 // instructions to verifying user and its password
-                .authenticationProvider(authenticationProvider());
+                .authenticationProvider(authenticationProvider())
+
+                // here we invoke OUR filter before Spring's filter
+                .addFilterBefore(jwtAuthFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -50,8 +54,8 @@ public class SecurityConfig {
     // authentification provider, connects UserDetailsService with the password encrypter
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
+        // in the newest version, we push the service directly through the constructor
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
