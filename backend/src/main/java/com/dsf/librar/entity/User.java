@@ -23,7 +23,7 @@ public class User {
     @Column(name = "complete_name")
     private String completeName;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false) //swapped LAZY for EAGER, otherwise the connection to the DB is closed before retrieving role info
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
