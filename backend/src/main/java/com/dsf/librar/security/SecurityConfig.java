@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 // path ruling
                 .authorizeHttpRequests(auth -> auth
-                        //.requestMatchers("/auth/**", "/api/users/**").permitAll() // login/registro endpoint is public. Now commented.
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // requires admin role
                         .anyRequest().authenticated() // any other route requires being logged in
                 )
