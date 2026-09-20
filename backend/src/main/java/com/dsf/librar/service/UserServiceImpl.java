@@ -9,6 +9,7 @@ import com.dsf.librar.repository.RoleRepository;
 import com.dsf.librar.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,18 +21,20 @@ public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void createUser(UserRequestDto userRequestDto) {
         Role role = roleRepository.findById(userRequestDto.getRole())
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         User user = userMapper.toEntity(userRequestDto);
-        user.setUsername(userRequestDto.getUsername());
-        user.setCompleteName(userRequestDto.getCompleteName());
-        user.setPassword(user.getPassword());
+        //step over the plain text password with the encrypted version of the password
+        user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
+
         user.setRole(role);
         user.setSucursal(null);
         user.setActive(true);
+
         userRepository.save(user);
     }
 
@@ -53,7 +56,11 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new RuntimeException("User not found"));
         userMapper.updateUser(userRequestDto, user);
         if (userRequestDto.getPassword() != null && !userRequestDto.getPassword().isBlank()) {
-            user.setPassword(userRequestDto.getPassword());
+            // this line would make the passwords plain text instead of saving them encrypted
+            // user.setPassword(userRequestDto.getPassword());
+
+            //so now we encode the password before saving it in the DB
+            user.setPassword(passwordEncoder.encode(userRequestDto.getPassword()));
         }
         if (userRequestDto.getRole() != null) {
             Role role = roleRepository.findById(userRequestDto.getRole())
