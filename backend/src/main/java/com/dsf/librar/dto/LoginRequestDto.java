@@ -2,7 +2,7 @@ package com.dsf.librar.dto;
 import lombok.Data;
 
 @Data
-public class AuthRequest {
+public class LoginRequestDto {
     private String username;
     private String password;
 }

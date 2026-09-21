@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AuthResponse {
+public class LoginResponseDto {
     private String token;
 }
