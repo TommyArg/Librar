@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 export const axiosClient = axios.create({
-  baseURL: 'https://uwu.owo', // Cambiar por tu API real
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+    baseURL: 'http://localhost:8080',
+    timeout: 10000,
+    headers: {
+        'Content-Type': 'application/json',
+    },
 });
 
-// Interceptor para inyectar token de autenticación en cada petición
+// intercep and inyect auth token in each request
 axiosClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -20,7 +20,7 @@ axiosClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Interceptor para manejar errores globales (ej: 401 desloguear al usuario)
+// interceptor for global error handling
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
