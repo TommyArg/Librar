@@ -49,13 +49,12 @@ public class UserServiceImpl implements UserService{
 
         // Bootstrapping: first user registered becomes ADMIN
         long userCount = userRepository.count();
-        Long roleId = (userCount == 0) ? 1L : 2L;
+        String targetRoleName = (userCount == 0) ? "ROLE_ADMIN" : "ROLE_USER";
 
-        Role assignedRole = roleRepository.findById(roleId)
-                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado en la BD"));
+        Role assignedRole = roleRepository.findByName(targetRoleName)
+                .orElseThrow(() -> new RuntimeException("Error: Rol " + targetRoleName + " no encontrado en la BD"));
 
         newUser.setRole(assignedRole);
-
         userRepository.save(newUser);
     }
 

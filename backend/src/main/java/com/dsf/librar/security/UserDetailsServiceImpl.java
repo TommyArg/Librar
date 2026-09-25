@@ -25,15 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + username));
 
-        // Spring Security wants roles to start with "ROLE_"
-        String roleName = user.getRole().getName().toUpperCase();
-
-        // therefore, we add the "ROLE_" prefix, j- just in case hehehe...
-        if (!roleName.startsWith("ROLE_")) {
-            roleName = "ROLE_" + roleName;
-        }
-
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roleName);
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(user.getRole().getName().toUpperCase());
 
         // returns object User (Spring Security, NOT the user entity)
         return new org.springframework.security.core.userdetails.User(
