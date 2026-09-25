@@ -1,5 +1,6 @@
 package com.dsf.librar.service;
 
+import com.dsf.librar.dto.RegisterRequestDto;
 import com.dsf.librar.dto.UserRequestDto;
 import com.dsf.librar.dto.UserResponseDto;
 import com.dsf.librar.entity.Role;
@@ -36,6 +37,26 @@ public class UserServiceImpl implements UserService{
         user.setActive(true);
 
         userRepository.save(user);
+    }
+
+    @Override
+    public void registerUser(RegisterRequestDto request) {
+        User newUser = new User();
+        newUser.setUsername(request.getUsername());
+        newUser.setCompleteName(request.getCompleteName());
+        newUser.setPassword(passwordEncoder.encode(request.getPassword()));
+        newUser.setActive(true); // Lo activamos por defecto
+
+        // Bootstrapping: first user registered becomes ADMIN
+        long userCount = userRepository.count();
+        Long roleId = (userCount == 0) ? 1L : 2L;
+
+        Role assignedRole = roleRepository.findById(roleId)
+                .orElseThrow(() -> new RuntimeException("Error: Rol no encontrado en la BD"));
+
+        newUser.setRole(assignedRole);
+
+        userRepository.save(newUser);
     }
 
     @Override

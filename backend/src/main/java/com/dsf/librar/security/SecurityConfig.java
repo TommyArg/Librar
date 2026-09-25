@@ -45,6 +45,8 @@ public class SecurityConfig {
                 // path ruling
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        //whenever an error occurs, it will show regardless of permits
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN") // requires admin role
                         .anyRequest().authenticated() // any other route requires being logged in
                 )

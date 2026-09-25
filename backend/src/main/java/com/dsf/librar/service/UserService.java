@@ -1,11 +1,14 @@
 package com.dsf.librar.service;
 
+import com.dsf.librar.dto.RegisterRequestDto;
 import com.dsf.librar.dto.UserRequestDto;
 import com.dsf.librar.dto.UserResponseDto;
 
 import java.util.List;
 
 public interface UserService {
+    //needed to add this method
+    void registerUser(RegisterRequestDto request);
     void createUser(UserRequestDto userRequestDto);
     List<UserResponseDto> listUser();
     UserResponseDto listUserId(Long id);
