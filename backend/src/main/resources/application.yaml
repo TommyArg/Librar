@@ -2,7 +2,7 @@ spring:
   application:
     name: Librar
   datasource:
-    url: jdbc:mariadb://localhost:3306/librarDB
+    url: jdbc:mariadb://mariadb:3306/librarDB
     username: root
     password: 1234
     driver-class-name: org.mariadb.jdbc.Driver
@@ -16,8 +16,8 @@ spring:
 
 security:
   jwt:
-    secret-key: ${JWT_SECRET_KEY:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
-    expiration-time: ${JWT_EXPIRATION:86400000}
+    secret-key: "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970"
+    expiration-time: 86400000
 app:
   cors:
-    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+    allowed-origins: http://localhost:5173
