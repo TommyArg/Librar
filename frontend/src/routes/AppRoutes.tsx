@@ -1,7 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { LoginPage } from '../pages/Login/LoginPage';
 import { ProtectedRoute } from './ProtectedRoute';
-import { HomePage } from '../pages/Home/HomePage';
+import HomePage from '../pages/Home/HomePage';
+import ProductsPage from '../pages/Products/ProductsPage';
 
 // 404 test
 const NotFound = () => <h2>404 - Página no encontrada</h2>;
@@ -21,8 +22,10 @@ export const router = createBrowserRouter([
         path: '/', //  root route
         element: <HomePage />,
       },
-      // future entrances should look like this
-      //{ path: '/usuarios', element: <UsersPage />
+      {
+        path: '/products', // Ruta para tu ticket GL-19 y GL-21
+        element: <ProductsPage />,
+      }
     ],
   },
 

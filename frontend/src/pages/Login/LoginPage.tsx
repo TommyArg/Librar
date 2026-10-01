@@ -18,6 +18,8 @@ export const LoginPage: React.FC = () => {
                 username: values.username,
                 password: values.password
             });
+            // this here is meant to clear expired tokens whenever we try to login again
+            localStorage.removeItem('token');
             // we get the token and store it in localStorage
             localStorage.setItem('token', response.data.token);
 
