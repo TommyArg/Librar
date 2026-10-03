@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "UPDATE user SET active = true WHERE id = :id", nativeQuery = true)
     void restoreById(@Param("id") Long id);
     Optional<User> findByUsername(String username);
+    // this checks if an admin exists:
+    boolean existsByRoleName(String roleName);
 }

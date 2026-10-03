@@ -41,18 +41,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void registerUser(RegisterRequestDto request) {
+        if (userRepository.existsByRoleName("ROLE_ADMIN")) {
+            throw new RuntimeException("Acceso denegado: El administrador principal del sistema ya ha sido configurado.");
+        }
+
+        // when there is no Admin, this will create it
         User newUser = new User();
         newUser.setUsername(request.getUsername());
         newUser.setCompleteName(request.getCompleteName());
         newUser.setPassword(passwordEncoder.encode(request.getPassword()));
-        newUser.setActive(true); // Lo activamos por defecto
+        newUser.setActive(true);
 
-        // Bootstrapping: first user registered becomes ADMIN
-        long userCount = userRepository.count();
-        String targetRoleName = (userCount == 0) ? "ROLE_ADMIN" : "ROLE_USER";
-
-        Role assignedRole = roleRepository.findByName(targetRoleName)
-                .orElseThrow(() -> new RuntimeException("Error: Rol " + targetRoleName + " no encontrado en la BD"));
+        // we apply the admin role to the new user
+        Role assignedRole = roleRepository.findByName("ROLE_ADMIN")
+                .orElseThrow(() -> new RuntimeException("Error: Rol ROLE_ADMIN no encontrado en la BD"));
 
         newUser.setRole(assignedRole);
         userRepository.save(newUser);
