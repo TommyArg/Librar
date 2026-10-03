@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircleFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
+import { Space, Button } from 'antd';
 
 const { Title, Text } = Typography;
 
@@ -21,27 +22,26 @@ const HomePage = () => {
 
 
             <Title level={2} style={{ margin: 0, color: '#262626' }}>
-                ¡Bienvenido al Panel de Control!
+                ¡Te damos la bienvenida al Panel de Control!
             </Title>
             <Text type="secondary" style={{ display: 'block', marginTop: '8px', marginBottom: '32px' }}>
-                Has ingresado correctamente. Tu rol en el sistema es: ROLE_ADMIN
+                Has ingresado correctamente.
             </Text>
 
 
-            <div style={{ display: 'flex', gap: '16px' }}>
-                <button
-                    style={{ padding: '8px 16px', backgroundColor: '#ff4d4f', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
-                >
-                    Configuraciones Avanzadas
-                </button>
+            <Space size={16} wrap>
+                <Button size="large" onClick={() => navigate('/products')}>
+                    Gestión de Productos
+                </Button>
 
-                <button
-                    onClick={() => navigate('/products')}
-                    style={{ padding: '8px 16px', backgroundColor: '#1677ff', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer' }}
-                >
-                    Ir a Gestión de Productos
-                </button>
-            </div>
+                <Button size="large" onClick={() => navigate('/stock')}>
+                    Ver Stock por Sucursales
+                </Button>
+
+                <Button type="primary" size="large" onClick={() => navigate('/register')}>
+                    Registrar Nuevo Empleado
+                </Button>
+            </Space>
 
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Card, message, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -10,21 +10,26 @@ export const LoginPage: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        localStorage.removeItem('token');
+    }, []);
     // onFinish only runs if all inputs are filled
     const onFinish = async (values: any) => {
         setLoading(true);
+
+        // just to be sure, we remove the previous token (in case there is)
+        localStorage.removeItem('token');
+
         try {
             const response = await axiosClient.post('/auth/login', {
                 username: values.username,
                 password: values.password
             });
-            // this here is meant to clear expired tokens whenever we try to login again
-            localStorage.removeItem('token');
-            // we get the token and store it in localStorage
+
+            // we save the new token
             localStorage.setItem('token', response.data.token);
 
             message.success('¡Login exitoso!');
-            // sent home
             navigate('/');
         } catch (error) {
             message.error('Usuario o contraseña incorrectos');
@@ -37,7 +42,7 @@ export const LoginPage: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#f0f2f5' }}>
             <Card style={{ width: 400, boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                 <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                    <Title level={3}>Acceso al Sistema</Title>
+                    <Title level={3}>Acceso a Librar</Title>
                 </div>
 
                 <Form name="login_form" onFinish={onFinish} layout="vertical">
@@ -60,6 +65,13 @@ export const LoginPage: React.FC = () => {
                             Ingresar
                         </Button>
                     </Form.Item>
+
+                    <div style={{ textAlign: 'center', marginTop: '16px' }}>
+                        <Typography.Text>¿No tienes usuario registrado? </Typography.Text>
+                        <Button type="link" onClick={() => navigate('/register')} style={{ padding: 0 }}>
+                            Crear Usuario
+                        </Button>
+                    </div>
                 </Form>
             </Card>
         </div>

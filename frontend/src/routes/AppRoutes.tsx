@@ -3,6 +3,8 @@ import { LoginPage } from '../pages/Login/LoginPage';
 import { ProtectedRoute } from './ProtectedRoute';
 import HomePage from '../pages/Home/HomePage';
 import ProductsPage from '../pages/Products/ProductsPage';
+import StockPage from '../pages/Stock/StockPage';
+import { RegisterPage } from '../pages/Auth/RegisterPage';
 
 // 404 test
 const NotFound = () => <h2>404 - Página no encontrada</h2>;
@@ -13,19 +15,26 @@ export const router = createBrowserRouter([
     path: '/login',
     element: <LoginPage />,
   },
-
+  {
+    path: '/register',
+    element: <RegisterPage />,
+  },
   // protected routes
   {
     element: <ProtectedRoute />,
     children: [
       {
-        path: '/', //  root route
+        path: '/', // root route
         element: <HomePage />,
       },
       {
-        path: '/products', // Ruta para tu ticket GL-19 y GL-21
+        path: '/products',
         element: <ProductsPage />,
-      }
+      },
+      {
+        path: '/stock',
+        element: <StockPage />,
+      },
     ],
   },
 
