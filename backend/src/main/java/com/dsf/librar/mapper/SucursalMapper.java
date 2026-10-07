@@ -1,7 +1,7 @@
 package com.dsf.librar.mapper;
 
-import com.dsf.librar.dto.SucursalRequestDto;
-import com.dsf.librar.dto.SucursalResponseDto;
+import com.dsf.librar.dto.request.SucursalRequestDto;
+import com.dsf.librar.dto.response.SucursalResponseDto;
 import com.dsf.librar.entity.Sucursal;
 import org.mapstruct.*;
 

@@ -1,13 +1,14 @@
-package com.dsf.librar.service;
+package com.dsf.librar.service.impl;
 
-import com.dsf.librar.dto.RegisterRequestDto;
-import com.dsf.librar.dto.UserRequestDto;
-import com.dsf.librar.dto.UserResponseDto;
+import com.dsf.librar.dto.request.RegisterRequestDto;
+import com.dsf.librar.dto.request.UserRequestDto;
+import com.dsf.librar.dto.response.UserResponseDto;
 import com.dsf.librar.entity.Role;
 import com.dsf.librar.entity.User;
 import com.dsf.librar.mapper.UserMapper;
 import com.dsf.librar.repository.RoleRepository;
 import com.dsf.librar.repository.UserRepository;
+import com.dsf.librar.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;

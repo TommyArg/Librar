@@ -1,7 +1,7 @@
 package com.dsf.librar.service;
 
-import com.dsf.librar.dto.StockSucursalRequestDto;
-import com.dsf.librar.dto.StockSucursalResponseDto;
+import com.dsf.librar.dto.request.StockSucursalRequestDto;
+import com.dsf.librar.dto.response.StockSucursalResponseDto;
 
 import java.util.List;
 

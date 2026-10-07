@@ -1,10 +1,11 @@
-package com.dsf.librar.service;
+package com.dsf.librar.service.impl;
 
-import com.dsf.librar.dto.SucursalRequestDto;
-import com.dsf.librar.dto.SucursalResponseDto;
+import com.dsf.librar.dto.request.SucursalRequestDto;
+import com.dsf.librar.dto.response.SucursalResponseDto;
 import com.dsf.librar.entity.Sucursal;
 import com.dsf.librar.mapper.SucursalMapper;
 import com.dsf.librar.repository.SucursalRepository;
+import com.dsf.librar.service.SucursalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class SucursalServiceImpl implements SucursalService{
+public class SucursalServiceImpl implements SucursalService {
     private final SucursalRepository sucursalRepository;
     private final SucursalMapper sucursalMapper;
 

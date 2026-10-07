@@ -1,4 +1,4 @@
-package com.dsf.librar.dto;
+package com.dsf.librar.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

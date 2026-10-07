@@ -1,10 +1,11 @@
-package com.dsf.librar.service;
+package com.dsf.librar.service.impl;
 
-import com.dsf.librar.dto.CategoryRequestDto;
-import com.dsf.librar.dto.CategoryResponseDto;
+import com.dsf.librar.dto.request.CategoryRequestDto;
+import com.dsf.librar.dto.response.CategoryResponseDto;
 import com.dsf.librar.entity.Category;
 import com.dsf.librar.mapper.CategoryMapper;
 import com.dsf.librar.repository.CategoryRepository;
+import com.dsf.librar.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;

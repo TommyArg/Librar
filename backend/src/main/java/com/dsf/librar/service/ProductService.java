@@ -1,8 +1,7 @@
 package com.dsf.librar.service;
 
-import com.dsf.librar.dto.ProductRequestDto;
-import com.dsf.librar.dto.ProductResponseDto;
-import jakarta.transaction.Transactional;
+import com.dsf.librar.dto.request.ProductRequestDto;
+import com.dsf.librar.dto.response.ProductResponseDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

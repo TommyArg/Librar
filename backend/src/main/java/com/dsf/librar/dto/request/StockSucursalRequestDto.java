@@ -1,7 +1,5 @@
-package com.dsf.librar.dto;
+package com.dsf.librar.dto.request;
 
-import com.dsf.librar.entity.Product;
-import com.dsf.librar.entity.Sucursal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StockSucursalResponseDto {
-    private Long id;
+public class StockSucursalRequestDto {
     private Long product;
     private Long sucursal;
     private Integer amount;

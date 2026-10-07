@@ -1,4 +1,4 @@
-package com.dsf.librar.dto;
+package com.dsf.librar.dto.request;
 import lombok.Data;
 
 @Data

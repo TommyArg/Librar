@@ -1,8 +1,8 @@
 package com.dsf.librar.service;
 
-import com.dsf.librar.dto.RegisterRequestDto;
-import com.dsf.librar.dto.UserRequestDto;
-import com.dsf.librar.dto.UserResponseDto;
+import com.dsf.librar.dto.request.RegisterRequestDto;
+import com.dsf.librar.dto.request.UserRequestDto;
+import com.dsf.librar.dto.response.UserResponseDto;
 
 import java.util.List;
 
