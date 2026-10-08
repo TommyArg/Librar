@@ -1,31 +1,32 @@
 package com.dsf.librar.repository;
 
 import com.dsf.librar.entity.CashMovement;
-import com.dsf.librar.enums.CashMovementReason;
-import com.dsf.librar.enums.CashMovementType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Repository
 public interface CashMovementRepository extends JpaRepository<CashMovement, Long> {
-    List<CashMovement> findByCashRegisterId(Long cashRegisterId);
-
-    List<CashMovement> findByCashRegisterIdAndType(
-            Long cashRegisterId,
-            CashMovementType type
+    @Query(value = """
+        SELECT
+            COALESCE(SUM(
+                CASE WHEN type = 'CASH_IN' THEN amount ELSE 0 END
+            ), 0) AS cashIn,
+            COALESCE(SUM(
+                CASE WHEN type = 'CASH_OUT' THEN amount ELSE 0 END
+            ), 0) AS cashOut
+        FROM cash_movement
+        WHERE cash_register_id = :cashRegisterId
+        """, nativeQuery = true)
+    CashMovementTotals calculateTotals(
+            @Param("cashRegisterId") Long cashRegisterId
     );
 
-    List<CashMovement> findByCashRegisterIdAndReason(
-            Long cashRegisterId,
-            CashMovementReason reason
-    );
-
-    List<CashMovement> findByCashRegisterIdAndOccurredAtBetween(
-            Long cashRegisterId,
-            LocalDateTime from,
-            LocalDateTime to
-    );
+    interface CashMovementTotals {
+        BigDecimal getCashIn();
+        BigDecimal getCashOut();
+    }
 }
