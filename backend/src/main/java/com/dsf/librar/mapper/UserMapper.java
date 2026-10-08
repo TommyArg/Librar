@@ -1,7 +1,7 @@
 package com.dsf.librar.mapper;
 
-import com.dsf.librar.dto.UserRequestDto;
-import com.dsf.librar.dto.UserResponseDto;
+import com.dsf.librar.dto.request.UserRequestDto;
+import com.dsf.librar.dto.response.UserResponseDto;
 import com.dsf.librar.entity.User;
 import org.mapstruct.*;
 

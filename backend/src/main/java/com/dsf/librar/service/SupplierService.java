@@ -1,7 +1,7 @@
 package com.dsf.librar.service;
 
-import com.dsf.librar.dto.SupplierRequestDto;
-import com.dsf.librar.dto.SupplierResponseDto;
+import com.dsf.librar.dto.request.SupplierRequestDto;
+import com.dsf.librar.dto.response.SupplierResponseDto;
 
 import java.util.List;
 

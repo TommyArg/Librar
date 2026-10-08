@@ -1,7 +1,7 @@
-package com.dsf.librar.service;
+package com.dsf.librar.service.impl;
 
-import com.dsf.librar.dto.StockSucursalRequestDto;
-import com.dsf.librar.dto.StockSucursalResponseDto;
+import com.dsf.librar.dto.request.StockSucursalRequestDto;
+import com.dsf.librar.dto.response.StockSucursalResponseDto;
 import com.dsf.librar.entity.Product;
 import com.dsf.librar.entity.StockSucursal;
 import com.dsf.librar.entity.Sucursal;
@@ -9,6 +9,7 @@ import com.dsf.librar.mapper.StockSucursalMapper;
 import com.dsf.librar.repository.ProductRepository;
 import com.dsf.librar.repository.StockSucursalRepository;
 import com.dsf.librar.repository.SucursalRepository;
+import com.dsf.librar.service.StockSucursalService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;

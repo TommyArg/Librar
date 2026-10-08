@@ -1,13 +1,12 @@
 package com.dsf.librar.controller;
 
-import com.dsf.librar.dto.LoginRequestDto;
-import com.dsf.librar.dto.LoginResponseDto;
-import com.dsf.librar.dto.RegisterRequestDto;
+import com.dsf.librar.dto.request.LoginRequestDto;
+import com.dsf.librar.dto.response.LoginResponseDto;
+import com.dsf.librar.dto.request.RegisterRequestDto;
 import com.dsf.librar.security.JwtService;
 import com.dsf.librar.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,7 +1,7 @@
-package com.dsf.librar.service;
+package com.dsf.librar.service.impl;
 
-import com.dsf.librar.dto.ProductRequestDto;
-import com.dsf.librar.dto.ProductResponseDto;
+import com.dsf.librar.dto.request.ProductRequestDto;
+import com.dsf.librar.dto.response.ProductResponseDto;
 import com.dsf.librar.entity.Category;
 import com.dsf.librar.entity.Product;
 import com.dsf.librar.entity.Supplier;
@@ -9,6 +9,7 @@ import com.dsf.librar.mapper.ProductMapper;
 import com.dsf.librar.repository.CategoryRepository;
 import com.dsf.librar.repository.ProductRepository;
 import com.dsf.librar.repository.SupplierRepository;
+import com.dsf.librar.service.ProductService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.usermodel.*;

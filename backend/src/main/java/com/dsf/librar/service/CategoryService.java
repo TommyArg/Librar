@@ -1,7 +1,7 @@
 package com.dsf.librar.service;
 
-import com.dsf.librar.dto.CategoryRequestDto;
-import com.dsf.librar.dto.CategoryResponseDto;
+import com.dsf.librar.dto.request.CategoryRequestDto;
+import com.dsf.librar.dto.response.CategoryResponseDto;
 
 import java.util.List;
 

@@ -1,10 +1,11 @@
-package com.dsf.librar.service;
+package com.dsf.librar.service.impl;
 
-import com.dsf.librar.dto.SupplierRequestDto;
-import com.dsf.librar.dto.SupplierResponseDto;
+import com.dsf.librar.dto.request.SupplierRequestDto;
+import com.dsf.librar.dto.response.SupplierResponseDto;
 import com.dsf.librar.entity.Supplier;
 import com.dsf.librar.mapper.SupplierMapper;
 import com.dsf.librar.repository.SupplierRepository;
+import com.dsf.librar.service.SupplierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

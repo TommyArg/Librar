@@ -1,7 +1,7 @@
 package com.dsf.librar.controller;
 
-import com.dsf.librar.dto.ProductRequestDto;
-import com.dsf.librar.dto.ProductResponseDto;
+import com.dsf.librar.dto.request.ProductRequestDto;
+import com.dsf.librar.dto.response.ProductResponseDto;
 import com.dsf.librar.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

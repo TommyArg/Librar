@@ -1,7 +1,7 @@
 package com.dsf.librar.mapper;
 
-import com.dsf.librar.dto.CategoryRequestDto;
-import com.dsf.librar.dto.CategoryResponseDto;
+import com.dsf.librar.dto.request.CategoryRequestDto;
+import com.dsf.librar.dto.response.CategoryResponseDto;
 import com.dsf.librar.entity.Category;
 import org.mapstruct.*;
 
