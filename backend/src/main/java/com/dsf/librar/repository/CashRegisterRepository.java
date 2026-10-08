@@ -5,7 +5,6 @@ import com.dsf.librar.enums.CashRegisterStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -14,10 +13,6 @@ public interface CashRegisterRepository extends JpaRepository<CashRegister, Long
             Long sucursalId,
             CashRegisterStatus status
     );
-
-    List<CashRegister> findBySucursalId(Long sucursalId);
-
-    List<CashRegister> findByUserId(Long userId);
 
     boolean existsBySucursalIdAndStatus(
             Long sucursalId,
