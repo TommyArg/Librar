@@ -17,9 +17,7 @@ const HomePage = () => {
             minHeight: '80vh',
             textAlign: 'center'
         }}>
-
             <CheckCircleFilled style={{ fontSize: '72px', color: '#52c41a', marginBottom: '16px' }} />
-
 
             <Title level={2} style={{ margin: 0, color: '#262626' }}>
                 ¡Te damos la bienvenida al Panel de Control!
@@ -27,7 +25,6 @@ const HomePage = () => {
             <Text type="secondary" style={{ display: 'block', marginTop: '8px', marginBottom: '32px' }}>
                 Has ingresado correctamente.
             </Text>
-
 
             <Space size={16} wrap>
                 <Button size="large" onClick={() => navigate('/products')}>
@@ -38,9 +35,18 @@ const HomePage = () => {
                     Ver Stock por Sucursales
                 </Button>
 
+                <Button size="large" onClick={() => navigate('/suppliers')}>
+                    Gestión de Proveedores
+                </Button>
+
+                <Button size="large" onClick={() => navigate('/categories')}>
+                    Gestión de Categorías
+                </Button>
+
                 <Button type="primary" size="large" onClick={() => navigate('/register')}>
                     Registrar Nuevo Empleado
                 </Button>
+
                 <Button size="large" onClick={() => navigate('/caja')}>
                     Gestión de Caja
                 </Button>
@@ -49,7 +55,6 @@ const HomePage = () => {
                     POS
                 </Button>
             </Space>
-
         </div>
     );
 };
