@@ -1,13 +1,27 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { Navbar } from '../components/Navbar';
 
 export const ProtectedRoute = () => {
-    const token = localStorage.getItem('token');
+    const isAuthenticated = localStorage.getItem('token');
 
-    if (!token) {
-        // if the user does NOT have the token, it will be sent to /login automatically
+    if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }
 
-    // if the user does have a valid token, show protected paths
-    return <Outlet />;
+    return (
+        <div style={{
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            backgroundColor: 'var(--ant-color-bg-base, #f5f5f5)',
+            overflowX: 'hidden',
+            width: '100%',
+            boxSizing: 'border-box'
+        }}>
+            <Navbar />
+            <div style={{ flex: 1, padding: '24px', width: '100%', boxSizing: 'border-box' }}>
+                <Outlet />
+            </div>
+        </div>
+    );
 };

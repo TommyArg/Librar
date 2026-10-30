@@ -7,53 +7,64 @@ import StockPage from '../pages/Stock/StockPage';
 import { RegisterPage } from '../pages/Auth/RegisterPage';
 import CashPage from '../pages/Cash/CashPage';
 import POSPage from '../pages/POS/POSPage';
+import SupplierPage from '../pages/Supplier/SupplierPage'; // <--- Importamos Proveedores
+import CategoryPage from '../pages/Category/CategoryPage'; // <--- Importamos Categorías
 
 const NotFound = () => <h2>404 - Página no encontrada</h2>;
 
 export const router = createBrowserRouter([
-  // public routes
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  {
-    path: '/register',
-    element: <RegisterPage />,
-  },
-  // protected routes
-  {
-    element: <ProtectedRoute />,
-    children: [
-      {
-        path: '/',
-        element: <HomePage />,
-      },
-      {
-        path: '/products',
-        element: <ProductsPage />,
-      },
-      {
-        path: '/stock',
-        element: <StockPage />,
-      },
-      {
-        path: '/caja',
-        element: <CashPage />,
-      },
-      {
-        path: '/pos',
-        element: <POSPage />,
-      },
-    ],
-  },
+    // public routes
+    {
+        path: '/login',
+        element: <LoginPage />,
+    },
+    {
+        path: '/register',
+        element: <RegisterPage />,
+    },
 
-  // error handling routes
-  {
-    path: '/404',
-    element: <NotFound />,
-  },
-  {
-    path: '*',
-    element: <Navigate to="/404" replace />,
-  },
+    // protected routes
+    {
+        element: <ProtectedRoute />,
+        children: [
+            {
+                path: '/',
+                element: <HomePage />,
+            },
+            {
+                path: '/products',
+                element: <ProductsPage />,
+            },
+            {
+                path: '/stock',
+                element: <StockPage />,
+            },
+            {
+                path: '/caja',
+                element: <CashPage />,
+            },
+            {
+                path: '/pos',
+                element: <POSPage />,
+            },
+            {
+                path: '/suppliers',
+                element: <SupplierPage />,
+            },
+            {
+                path: '/categories',
+                element: <CategoryPage />,
+            },
+        ],
+    },
+
+    // error handling routes
+    {
+        path: '/404',
+        element: <NotFound />,
+    },
+    {
+        path: '*',
+        element: <Navigate to="/404" replace />,
+    },
 ]);
